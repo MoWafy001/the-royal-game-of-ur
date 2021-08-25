@@ -1,0 +1,1 @@
+I am not responsible for any physical/psychological pain that you may experience while reading my code, or worse, trying to understand it.

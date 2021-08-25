@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const ROOM_ID = "<%= roomId %>";
+    </script>
+    
+    <script src="peer.js"></script>
+    <script>
+        var WIDTH = 600
+        if(window.outerWidth < WIDTH){
+            WIDTH = window.outerWidth - 50;
+        }
+        
+        var HEIGHT = 35+3*WIDTH / 8;
+        setup = ()=>{
+            const canvas = createCanvas(WIDTH, HEIGHT);
+            canvas.parent("#container")
+            background(141, 142, 116);
+        }
+
+        var p1_pieces = 7;
+        var p2_pieces = 7;
+
+        var p1_end = 0;
+        var p2_end = 0;
+
+        var si = false;
+
+        var p1_turn = true;
+
+        var waiting = false;
+        var moves = 0;
+
+        var roseta = false;
+
+    </script>
+    <script src="board.js"></script>
+    <script src="draw.js"></script>
+    <script src="controls.js"></script>
+</head>
+<body>
+    <div id="getting-ready">
+        <h1>waiting...</h1>
+        <span>room link : </span>
+        <a href="" id="link"></a>
+        <script>
+            document.querySelector("#link").textContent = document.URL
+            document.querySelector("#link").href = document.URL
+        </script>
+    </div>
+    <div id="container" style="position: relative;">
+        <span id="winner"></span>
+    </div>
+    <div id="controler">
+        <button onclick="play();"><span>&#9650;</span></button>
+        <span>steps :<span id="chance"></span></span>
+        <span id="turn">player 1's turn</span>
+    </div>
+    <div id="info">
+        <span id="p1-score">Player 1 : 0</span>
+        <span id="p2-score">Player 2 : 0</span>
+    </div>
+</body>
+</html>
